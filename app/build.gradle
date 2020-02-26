@@ -3,12 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.ebookfrenzy.quoteclient"
+        applicationId "com.ebookzfrenzy.quoteclient"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", " \"http://10.0.2.2:8080/qod/\"" //TODO Replace IP address for hardware device.
     }
     buildTypes {
         release {
@@ -32,8 +33,8 @@ dependencies {
 
     // Fragment navigation framework dependencies.
     def navigation_version = "2.2.1"
-    implementation "androidx.navigation:navigation-fragment:${navigation_version}"
-    implementation "androidx.navigation:navigation-ui:${navigation_version}"
+    implementation "androidx.navigation:navigation-fragment:$navigation_version"
+    implementation "androidx.navigation:navigation-ui:$navigation_version"
 
     // LiveData & ViewModel dependencies.
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
@@ -62,6 +63,3 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
-
-
-
