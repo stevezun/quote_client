@@ -1,6 +1,7 @@
-package com.ebookfrenzy.quoteclient;
+package com.ebookfrenzy.quoteclient.controller;
 
 import android.os.Bundle;
+import com.ebookfrenzy.quoteclient.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
