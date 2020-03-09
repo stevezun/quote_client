@@ -1,7 +1,12 @@
 package com.ebookfrenzy.quoteclient.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
 import com.ebookfrenzy.quoteclient.R;
+import com.ebookfrenzy.quoteclient.service.GoogleSignInService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -26,4 +31,28 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController( navView, navController );
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.options, menu );
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        boolean handled = true;
+        switch (item.getItemId()) {
+            case R.id.sign_out:
+                GoogleSignInService.getInstance().signOut()
+                    .addOnCompleteListener( (task) -> {
+                        Intent intent = new Intent( this, LoginActivity.class );
+                        intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK );
+                        startActivity( intent );
+                    } );
+                break;
+            default:
+                handled = super.onOptionsItemSelected( item );
+                break;
+        }
+        return handled;
+    }
 }
