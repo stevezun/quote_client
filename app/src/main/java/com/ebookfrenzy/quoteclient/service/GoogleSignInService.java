@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.ebookfrenzy.quoteclient.BuildConfig;
@@ -52,6 +53,7 @@ public class GoogleSignInService {
 
   public Task<GoogleSignInAccount> refresh() {
     return client.silentSignIn()
+        .addOnSuccessListener( (account) -> Log.d(getClass().getName(), account.getIdToken()) )
         .addOnSuccessListener(this::update)
         .addOnFailureListener(this::update);
   }
